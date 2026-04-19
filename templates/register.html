@@ -1,57 +1,59 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бюро знахідок | Реєстрація</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/register_styles.css') }}">
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <main class="auth-container">
-        <div class="auth-card">
-            <h2>Створити акаунт</h2>
-            <p class="auth-subtitle">Приєднуйтесь до спільноти, щоб повертати речі власникам</p>
+{% block title%}
+Бюро знахідок
+{% endblock %}
 
-            <form action="/register" method="POST" class="auth-form">
-                <div class="form-group">
-                    <label for="username">Ім'я та прізвище</label>
-                    <input type="text" id="username" name="username" placeholder="Іван Іванов" required>
-                </div>
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register_styles.css') }}">
+{% endblock %}
 
-                <div class="form-group">
-                    <label for="email">Електронна пошта</label>
-                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
-                </div>
+{% block body %}
 
-                <div class="form-group">
-                    <label for="phone">Номер телефону</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+380XXXXXXXXX" required>
-                </div>
+<main class="auth-container">
+    <div class="auth-card">
+        <h2>Створити акаунт</h2>
+        <p class="auth-subtitle">Приєднуйтесь до спільноти, щоб повертати речі власникам</p>
 
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm-password">Підтвердіть пароль</label>
-                    <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
-                </div>
-
-                <div class="form-terms">
-                    <input type="checkbox" id="terms" required>
-                    <label for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full">Зареєструватися</button>
-            </form>
-
-            <div class="auth-footer">
-                <p>Вже маєте акаунт? <a href="login.html">Увійти</a></p>
+        <form action="/register" method="POST" class="auth-form">
+            <div class="form-group">
+                <label for="username">Ім'я та прізвище</label>
+                <input type="text" id="username" name="username" placeholder="Іван Іванов" required>
             </div>
-        </div>
-    </main>
 
-</body>
-</html>
+            <div class="form-group">
+                <label for="email">Електронна пошта</label>
+                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Номер телефону</label>
+                <input type="tel" id="phone" name="phone" placeholder="+380XXXXXXXXX" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Підтвердіть пароль</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Зареєструватися</button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Вже маєте акаунт? <a href="login.html">Увійти</a></p>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

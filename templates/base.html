@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base_styles.css') }}">
     {% endblock %}
 </head>
+
 <body>
+
     <header class="navbar">
         <div class="container">
             <a href="#" class="logo">Бюро Знахідок</a>
@@ -37,11 +40,16 @@
         </section>
     </main>
 
+    {% block body %}
+    {% endblock %}
+
     <footer>
         <div class="container footer-content">
             <p>&copy; 2026 Бюро Знахідок. Усі права захищено.</p>
             <p>Зв'язок з адміністрацією: support@bureau.ua</p>
         </div>
     </footer>
+
 </body>
+
 </html>
