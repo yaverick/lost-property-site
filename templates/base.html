@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base_styles.css') }}">
+    {% endblock %}
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Бюро Знахідок</a>
+            <nav class="nav-links">
+                <a href="#">Головна</a>
+                <a href="#">Всі оголошення</a>
+                <a href="#">Про нас</a>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">Увійти</button>
+                <button class="btn btn-primary">Подати оголошення</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Знайдемо те, що загубилося</h1>
+                <p>Єдина база втрачених та знайдених речей. Допоможіть речам повернутися додому.</p>
+                <form class="search-form">
+                    <input type="text" placeholder="Що ви шукаєте? (наприклад: ключі, телефон, кіт)" required>
+                    <select>
+                        <option value="all">Усі категорії</option>
+                        <option value="electronics">Електроніка</option>
+                        <option value="documents">Документи</option>
+                        <option value="pets">Тварини</option>
+                        <option value="keys">Ключі</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Знайти</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 Бюро Знахідок. Усі права захищено.</p>
+            <p>Зв'язок з адміністрацією: support@bureau.ua</p>
+        </div>
+    </footer>
+</body>
+</html>
