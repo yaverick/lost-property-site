@@ -52,21 +52,21 @@ body {
     text-align: center;
 }
 
-.btn-primary {
+.btn-register {
     background-color: var(--primary-color);
     color: var(--white);
 }
 
-.btn-primary:hover {
+.btn-register:hover {
     background-color: var(--primary-hover);
 }
 
-.btn-outline {
+.btn-login {
     background-color: var(--primary-color);
     color: var(--white)
 }
 
-.btn-outline:hover {
+.btn-login:hover {
     background-color: var(--primary-hover);
 }
 
