@@ -14,11 +14,11 @@
 
     <header class="navbar">
         <div class="container">
-            <a href="#" class="logo">Бюро Знахідок</a>
+            <a href="{{ url_for('home') }}" class="logo">Бюро Знахідок</a>
             <nav class="nav-links">
-                <a href="{{ url_for('home')}}">Головна</a>
-                <a href="{{ url_for('home')}}">Всі оголошення</a>
-                <a href="{{ url_for('home')}}">Про нас</a>
+                <a href="{{ url_for('home') }}">Головна</a>
+                <a href="{{ url_for('home') }}">Всі оголошення</a>
+                <a href="{{ url_for('home') }}">Про нас</a>
             </nav>
             <div class="auth-buttons">
                 <a href="{{ url_for('login') }}" class="btn btn-login">Увійти</a>
