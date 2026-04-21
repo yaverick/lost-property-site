@@ -14,44 +14,44 @@
 <main class="auth-container">
     <div class="auth-card">
         <h2>Створити акаунт</h2>
-        <p class="auth-subtitle">Приєднуйтесь до спільноти, щоб повертати речі власникам</p>
+        <p class="auth-subtitle">Приєднуйтесь до спільноти,<br>щоб повертати речі власникам</p>
 
         <form action="/register" method="POST" class="auth-form">
             <div class="form-group">
                 <label for="username">Ім'я та прізвище</label>
-                <input type="text" id="username" name="username" placeholder="Іван Іванов" required>
+                <input type="text" id="username" name="username" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Електронна пошта</label>
-                <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">Номер телефону</label>
-                <input type="tel" id="phone" name="phone" placeholder="+380XXXXXXXXX" required>
+                <input type="tel" id="phone" name="phone" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" required>
             </div>
 
             <div class="form-group">
                 <label for="confirm-password">Підтвердіть пароль</label>
-                <input type="password" id="confirm-password" name="confirm_password" placeholder="••••••••" required>
+                <input type="password" id="confirm-password" name="confirm_password" required>
             </div>
 
             <div class="form-terms">
                 <input type="checkbox" id="terms" required>
-                <label for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
+                <label class="submit-rules" for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
             </div>
 
             <button type="submit" class="btn btn-register btn-full">Зареєструватися</button>
         </form>
 
         <div class="auth-footer">
-            <p>Вже маєте акаунт? <a href="login.html">Увійти</a></p>
+            <p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
         </div>
     </div>
 </main>
