@@ -16,18 +16,19 @@
         <div class="container">
             <a href="#" class="logo">Бюро Знахідок</a>
             <nav class="nav-links">
-                <a href="#">Головна</a>
-                <a href="#">Всі оголошення</a>
-                <a href="#">Про нас</a>
+                <a href="{{ url_for('home')}}">Головна</a>
+                <a href="{{ url_for('home')}}">Всі оголошення</a>
+                <a href="{{ url_for('home')}}">Про нас</a>
             </nav>
             <div class="auth-buttons">
-                <button class="btn btn-outline">Увійти</button>
-                <button class="btn btn-primary">Зареєструватися</button>
+                <a href="{{ url_for('login') }}" class="btn btn-outline">Увійти</a>
+                <a href="{{ url_for('register') }}" class="btn btn-primary">Зареєструватися</a>
             </div>
         </div>
     </header>
 
     <div class="gradient-wrapper">
+
         {% block body %}
         {% endblock %}
 
