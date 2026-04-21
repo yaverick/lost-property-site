@@ -4,7 +4,6 @@
     align-items: center;
     padding: 60px 20px;
     flex-grow: 1;
-    background: linear-gradient(135deg, #f0f2f5 0%, #e5e9f0 100%);
 }
 
 .auth-card {

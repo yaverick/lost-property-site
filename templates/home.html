@@ -8,3 +8,19 @@
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home_styles.css') }}">
 {% endblock %}
+
+{% block body %}
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Знайдемо те, що загубилося</h1>
+                <p>Єдина база втрачених та знайдених речей. Допоможіть речам повернутися додому.</p>
+                <form class="search-form">
+                    <input type="text" placeholder="Що ви шукаєте? (наприклад: ключі, телефон, кіт)" required>
+                    <button type="submit" class="btn btn-primary">Знайти</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
