@@ -52,12 +52,12 @@ body {
     text-align: center;
 }
 
-.btn-register {
+.btn-search {
     background-color: var(--primary-color);
     color: var(--white);
 }
 
-.btn-register:hover {
+.btn-search:hover {
     background-color: var(--primary-hover);
 }
 
