@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title%}
+{% block title %}
 Бюро знахідок | Головна
 {% endblock %}
 
@@ -29,7 +29,7 @@
                 <h2>Знайшли чужу річ?</h2>
                 <p>Ваша уважність може врятувати чийсь день.<br>Створіть коротку анкету, і ми допоможемо власнику знайти вас.</p>
 
-                <a href="create_finding.html" class="btn btn-primary btn-large">Заповнити анкету знахідки</a>
+                <a href="{{ url_for('report') }}" class="btn btn-primary btn-large">Заповнити анкету знахідки</a>
             </div>
         </div>
     </section>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Бюро знахідок | Створення оголошення
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/report_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <main class="form-page-container">
+        <div class="form-card">
+            <h2>Реєстрація знайденої речі</h2>
+            <p class="form-subtitle">Вкажіть деталі, щоб власник зміг впізнати свою річ</p>
+
+            <form action="#" class="custom-form">
+
+                <div class="form-group">
+                    <label for="title">Назва предмета</label>
+                    <input type="text" id="title" placeholder="Наприклад: Ключі від авто, Рюкзак, Телефон" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Детальний опис</label>
+                    <textarea id="description" rows="5" placeholder="Опишіть колір, стан та особливі прикмети" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Місто, де знайдено</label>
+                    <div class="select-wrapper">
+                        <select id="city" required>
+                            <option value="" disabled selected>Оберіть місто...</option>
+                            <option value="kyiv">Київ</option>
+                            <option value="zaporizhzhia">Запоріжжя</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Точна адреса або орієнтир</label>
+                    <input type="text" id="address" placeholder="Наприклад: вул. Хрещатик 22, біля метро" required>
+                </div>
+
+                <div class="form-terms">
+                    <input type="checkbox" id="confirm" required>
+                    <label class="true-inf" for="confirm">Я підтверджую, що вказана інформація є правдивою</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Опублікувати оголошення</button>
+            </form>
+        </div>
+    </main>
+
+{% endblock %}
