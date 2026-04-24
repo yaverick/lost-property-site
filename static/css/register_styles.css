@@ -91,6 +91,15 @@
     font-size: 16px;
 }
 
-.submit-rules {
-    margin: 0 !important;
+.submit-rules,
+.submit-checkbox {
+    margin-bottom: 0 !important;
+    margin-top: 10px;
+}
+
+
+.password-error {
+    color: red;
+    font-size: 14px;
+    font-weight: 550;
 }
