@@ -18,8 +18,8 @@
 
         <form action="/register" method="post" class="auth-form">
             <div class="form-group">
-                <label for="username">Ім'я та прізвище</label>
-                <input type="text" id="username" name="full-name" value="{{ full_name if full_name else '' }}" required>
+                <label for="username">Ім'я</label>
+                <input type="text" id="username" name="name" value="{{ name if name else '' }}" required>
             </div>
 
             <div class="form-group">
@@ -43,7 +43,7 @@
             </div>
 
             {% if error %}
-            <p class="password-error">Паролі не співпадають</p>
+            <p class="password-error">{{ error }}</p>
             {% endif %}
 
             <div class="form-terms">
@@ -51,7 +51,7 @@
                 <label class="submit-rules" for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
             </div>
 
-            <button type="submit" class="btn btn-search btn-full">Зареєструватися</button>
+            <button type="submit" class="btn btn-search btn-full">Зареєструвати аккаунт</button>
         </form>
 
         <div class="auth-footer">

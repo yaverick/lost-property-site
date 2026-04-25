@@ -21,10 +21,17 @@
                 <a href="{{ url_for('about') }}">Про нас</a>
                 <a href="{{ url_for('rules') }}">Правила</a>
             </nav>
+            {% if not current_user.is_authenticated %}
             <div class="auth-buttons">
                 <a href="{{ url_for('login') }}" class="btn btn-login">Увійти</a>
-                <a href="{{ url_for('register') }}" class="btn btn-search">Зареєструватися</a>
+                <a href="{{ url_for('register') }}" class="btn btn-login">Зареєструватися</a>
             </div>
+            {% else %}
+            <div class="auth-buttons">
+                <span class="user-name">Вітаємо, {{ current_user.name }}!</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-login">Вийти</a>
+            </div>
+            {% endif %}
         </div>
     </header>
 
