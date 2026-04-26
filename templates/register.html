@@ -11,53 +11,53 @@
 
 {% block body %}
 
-<main class="auth-container">
-    <div class="auth-card">
-        <h2>Створити акаунт</h2>
-        <p class="auth-subtitle">Приєднуйтесь до спільноти,<br>щоб повертати речі власникам</p>
+    <main class="auth-container">
+        <div class="auth-card">
+            <h2>Створити акаунт</h2>
+            <p class="auth-subtitle">Приєднуйтесь до спільноти,<br>щоб повертати речі власникам</p>
 
-        <form action="/register" method="post" class="auth-form">
-            <div class="form-group">
-                <label for="username">Ім'я</label>
-                <input type="text" id="username" name="name" value="{{ name if name else '' }}" required>
+            <form action="/register" method="post" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Ім'я</label>
+                    <input type="text" id="username" name="name" value="{{ name if name else '' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Електронна пошта</label>
+                    <input type="email" id="email" name="email" value="{{ email if email else '' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефону</label>
+                    <input type="tel" id="phone" name="phone" value="{{ phone_number if phone_number else '' }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Підтвердіть пароль</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+
+                {% if error %}
+                <p class="password-error">{{ error }}</p>
+                {% endif %}
+
+                <div class="form-terms">
+                    <input type="checkbox" class="submit-checkbox" id="terms" required>
+                    <label class="submit-rules" for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
+                </div>
+
+                <button type="submit" class="btn btn-search btn-full">Зареєструвати аккаунт</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
             </div>
-
-            <div class="form-group">
-                <label for="email">Електронна пошта</label>
-                <input type="email" id="email" name="email" value="{{ email if email else '' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="phone">Номер телефону</label>
-                <input type="tel" id="phone" name="phone" value="{{ phone_number if phone_number else '' }}" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirm-password">Підтвердіть пароль</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
-            </div>
-
-            {% if error %}
-            <p class="password-error">{{ error }}</p>
-            {% endif %}
-
-            <div class="form-terms">
-                <input type="checkbox" class="submit-checkbox" id="terms" required>
-                <label class="submit-rules" for="terms">Я згоден з <a href="#">правилами сервісу</a></label>
-            </div>
-
-            <button type="submit" class="btn btn-search btn-full">Зареєструвати аккаунт</button>
-        </form>
-
-        <div class="auth-footer">
-            <p>Вже маєте акаунт? <a href="{{ url_for('login') }}">Увійти</a></p>
         </div>
-    </div>
-</main>
+    </main>
 
 {% endblock %}

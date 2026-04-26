@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Бюро знахідок | Помилка
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <main class="auth-container">
+    <div class="auth-card">
+        <h2>Помилка</h2>
+        <div class="auth-footer">
+            <p>{{ error }}</a></p>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}
