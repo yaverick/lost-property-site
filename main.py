@@ -35,6 +35,8 @@ class LostItem(db.Model):
     city = db.Column(db.String(100), nullable=False)
     address = db.Column(db.Text, nullable=False)
     creator_id = db.Column(db.Integer, nullable=False)
+    creator_name = db.Column(db.String(30), nullable=False)
+    creator_phone_number = db.Column(db.String(20), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=get_kyiv_time)
 
 
@@ -54,44 +56,28 @@ def inject_user():
 
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
-    return render_template('home.html')
+    items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
+    return render_template('home.html', items=items)
+
+@app.route('/all_items', methods=['POST', 'GET'])
+def all_items():
+    items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
+    return render_template('all_items.html', items=items)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['password']
-
-        user = Profile.query.filter_by(email=email).first()
-
-        if user and check_password_hash(user.password, password):
-            login_user(user, remember=True)
-            return redirect('/home')
-        else:
-            return render_template('login.html', error='Неправильна пошта або пароль')
-
-    return render_template('login.html')
-
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect('/home')
-
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        phone_number = request.form['phone']
-        password = (request.form['password']).rstrip()
-        confirm_password = (request.form['confirm-password']).rstrip()
+        name = (request.form['name']).rstrip()
+        email = (request.form['email']).rstrip()
+        phone_number = (request.form['phone']).rstrip()
+        password = (request.form['password']).strip()
+        confirm_password = (request.form['confirm-password']).strip()
 
         hashed_password = generate_password_hash(password)
 
@@ -120,6 +106,28 @@ def register():
 
     return render_template('register.html')
 
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        email = (request.form['email']).rstrip()
+        password = (request.form['password']).rstrip()
+
+        user = Profile.query.filter_by(email=email).first()
+
+        if user and check_password_hash(user.password, password):
+            login_user(user, remember=True)
+            return redirect('/home')
+        else:
+            return render_template('login.html', error='Неправильна пошта або пароль')
+
+    return render_template('login.html')
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/home')
+
 @app.route('/rules')
 def rules():
     return render_template('rules.html')
@@ -133,13 +141,17 @@ def report():
         city = request.form['city']
         address = request.form['address']
         creator_id = current_user.id
+        creator_name = current_user.name
+        creator_phone_number = current_user.phone_number
 
         new_lost_item = LostItem(
             title=title,
             text=text,
             city=city,
             address=address,
-            creator_id=creator_id)
+            creator_id = creator_id,
+            creator_name=creator_name,
+            creator_phone_number=creator_phone_number)
 
         try:
             db.session.add(new_lost_item)

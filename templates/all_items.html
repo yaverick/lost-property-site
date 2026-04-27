@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Бюро знахідок | Всі оголошення
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all_items_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <section class="search-section">
+        <form class="search-container" action="{{ url_for('all_items') }}" method="GET">
+            <div class="search-field">
+                <label>Що шукаємо?</label>
+                <input type="text" name="query" placeholder="Введіть назву...">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="search-field">
+                <label>Де загублено?</label>
+                <input type="text" name="city" placeholder="Введіть місто...">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="search-field">
+                <label>Сортування</label>
+                <select name="sort">
+                    <option value="newest">Спочатку нові</option>
+                    <option value="oldest">Спочатку старі</option>
+                </select>
+            </div>
+
+            <button type="submit" class="search-button">
+                <span>Пошук</span>
+            </button>
+        </form>
+    </section>
+
+    <div class="items-container">
+        <div class="items-grid">
+
+            {% for item in items %}
+
+                <div class="item-card">
+
+                    <div class="item-header">
+                        <h3 class="item-title">{{ item.title }}</h3>
+                        <span class="item-date">{{ item.date_posted.strftime('%d.%m') }}</span>
+                    </div>
+
+                    <div class="item-body">
+                        <div class="item-location">
+                            <i class="location-icon">📍</i>
+                            <span>{{ item.city }}, {{ item.address }}</span>
+                        </div>
+                    </div>
+
+                    <div class="item-footer">
+                        <a href="" class="btn-more">
+                            Детальніше
+                        </a>
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <p class="no-items">Оголошень поки немає...</p>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

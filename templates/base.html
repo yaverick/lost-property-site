@@ -17,7 +17,7 @@
             <a href="{{ url_for('home') }}" class="logo">Бюро Знахідок</a>
             <nav class="nav-links">
                 <a href="{{ url_for('home') }}">Головна</a>
-                <a href="{{ url_for('home') }}">Всі оголошення</a>
+                <a href="{{ url_for('all_items') }}">Всі оголошення</a>
                 <a href="{{ url_for('about') }}">Про нас</a>
                 <a href="{{ url_for('rules') }}">Правила</a>
             </nav>
@@ -37,8 +37,10 @@
 
     <div class="gradient-wrapper">
 
-        {% block body %}
-        {% endblock %}
+        <div class="main-content">
+            {% block body %}
+            {% endblock %}
+        </div>
 
         <footer>
             <div class="container footer-content">

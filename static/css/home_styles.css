@@ -1,6 +1,7 @@
 .hero {
     color: var(--white);
-    padding: 80px 0;
+    padding-top: 60px;
+    padding-bottom: 20px;
     text-align: center;
     flex-grow: 1;
 }
@@ -41,6 +42,15 @@
     font-size: 18px;
     font-weight: 700;
     white-space: nowrap;
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+    transition: all 0.3s ease;
+}
+
+.search-form .btn:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
 }
 
 .found-section {
@@ -90,7 +100,7 @@
 }
 
 .report-finding {
-    padding: 40px 20px;
+    padding: 30px 20px;
 }
 
 .report-card {
@@ -102,6 +112,8 @@
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border-color);
     text-align: center;
+    width: 500px;
+    height: 360px;
 }
 
 .report-text {
@@ -154,4 +166,14 @@
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
     box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+}
+
+.user-choice {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.found-text {
+    margin-bottom: 37px !important;
 }
