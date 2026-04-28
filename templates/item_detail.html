@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Бюро знахідок | Знахідка {{ item.id }}
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/item_detail_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container item-detail-content">
+        <div class="item-detail-card">
+            <div class="item-detail-header">
+                <h1>{{ item.title }}</h1>
+                <span class="badge-date">Додано: {{ item.date_posted.strftime('%d.%m.%Y %H:%M') }}</span>
+            </div>
+
+            <div class="item-detail-body">
+                <div class="info-group">
+                    <h3>Де знайшли:</h3>
+                    <p>{{ item.city }}, {{ item.address }}</p>
+                </div>
+
+                <div class="info-group">
+                    <h3>Опис:</h3>
+                    <p>{{ item.text }}</p>
+                </div>
+
+                <div class="info-group contact-box">
+                    <h3>Контакти для зв'язку</h3>
+                    <p><strong>Ім'я:</strong> {{ item.creator_name }}</p>
+                    <p><strong>Телефон:</strong> <a href="tel:{{ item.creator_phone_number }}">{{ item.creator_phone_number }}</a></p>
+                </div>
+            </div>
+
+            <div class="item-detail-footer">
+                <a href="{{ url_for('all_items') }}" class="btn-back">← Назад до списку</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

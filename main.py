@@ -200,6 +200,10 @@ def report():
 
     return render_template('report.html')
 
+@app.route('/item-<int:item_id>')
+def item_detail(item_id):
+    item = LostItem.query.get_or_404(item_id)
+    return render_template('item_detail.html', item=item)
 
 if __name__ == '__main__':
     with app.app_context():
