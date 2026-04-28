@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from sqlalchemy import func
 from datetime import datetime
 import pytz
 
@@ -59,12 +60,41 @@ def inject_user():
 @app.route('/home', methods=['POST', 'GET'])
 def home():
     items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
+    title_search = request.args.get('title-search', '').strip()
     return render_template('home.html', items=items)
 
 @app.route('/all_items', methods=['POST', 'GET'])
 def all_items():
     items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
-    return render_template('all_items.html', items=items)
+
+    title_search = request.args.get('title-search', '').strip()
+    city_search = request.args.get('city-search', '').strip()
+    sort_type = request.args.get('sort', 'newest')
+
+    items = LostItem.query
+
+    if title_search:
+        items = items.filter(
+            (LostItem.title.contains(title_search)) |
+            (LostItem.text.contains(title_search))
+        )
+    if city_search:
+        items = items.filter(
+            (LostItem.city.contains(city_search)) |
+            (LostItem.address.contains(city_search))
+        )
+    if sort_type == 'oldest':
+        items = items.order_by(LostItem.date_posted.asc())
+    else:
+        items = items.order_by(LostItem.date_posted.desc())
+
+    items = items.all()
+
+    return render_template('all_items.html',
+                           items=items,
+                           title_search=title_search,
+                           city_search=city_search,
+                           sort_type=sort_type)
 
 @app.route('/about')
 def about():
@@ -92,7 +122,7 @@ def register():
             try:
                 db.session.add(new_profile)
                 db.session.commit()
-                return redirect('/login')
+                return redirect(url_for('login'))
             except:
                 return render_template('error.html',
                                        error='Під час свторення акаунту виникла помилка.')
@@ -122,11 +152,18 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/my_profile')
+@login_required
+def my_profile():
+    items = LostItem.query.filter_by(creator_id=current_user.id)
+    items = items.order_by(LostItem.date_posted.desc()).all()
+    return render_template('my_profile.html', items=items)
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect('/home')
+    return redirect(url_for('home'))
 
 @app.route('/rules')
 def rules():
@@ -156,7 +193,7 @@ def report():
         try:
             db.session.add(new_lost_item)
             db.session.commit()
-            return redirect('/home')
+            return redirect(url_for('home'))
         except:
             return render_template('error.html',
                                        error='Під час свторення знахідки виникла помилка.')

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Бюро знахідок | Помилка
+{% endblock %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/my_profile_styles.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container profile-page">
+
+        <h2 class="profile-header">Мій профіль</h2>
+
+        <div class="profile-header-card">
+            <div class="profile-avatar">
+                {{ current_user.name[0] | upper }}
+            </div>
+
+            <div class="profile-info">
+                <h1>{{ current_user.name }}</h1>
+                <div class="contact-info">
+                    <p><span>📧 Email:</span> {{ current_user.email }}</p>
+                    <p><span>📞 Телефон:</span> {{ current_user.phone_number }}</p>
+                </div>
+
+                <div class="profile-actions">
+                    <a href="{{ url_for('logout') }}" class="btn-logout">Вийти з акаунту</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-items-section">
+            <div class="section-header">
+                <h2>Мої оголошення</h2>
+                <a href="{{ url_for('report') }}" class="btn-add">➕ Додати нове</a>
+            </div>
+
+             <div class="items-container">
+                <div class="items-grid">
+
+                    {% for item in items %}
+
+                        <div class="item-card">
+
+                            <div class="item-header">
+                                <h3 class="item-title">{{ item.title }}</h3>
+                                <span class="item-date">{{ item.date_posted.strftime('%d.%m') }}</span>
+                            </div>
+
+                            <div class="item-body">
+                                <div class="item-location">
+                                    <i class="location-icon">📍</i>
+                                    <span>{{ item.city }}, {{ item.address }}</span>
+                                </div>
+                            </div>
+
+                            <div class="item-footer">
+                                <a href="" class="btn-more">
+                                    Детальніше
+                                </a>
+                            </div>
+
+                        </div>
+
+                    {% else %}
+
+                        <p class="no-items">Ви ще не опубліковали жодного оголошення</p>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

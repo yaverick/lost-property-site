@@ -29,6 +29,7 @@
             {% else %}
             <div class="auth-buttons">
                 <span class="user-name">Вітаємо, {{ current_user.name }}!</span>
+                <a href="{{ url_for('my_profile') }}" class="btn btn-login">Профіль</a>
                 <a href="{{ url_for('logout') }}" class="btn btn-login">Вийти</a>
             </div>
             {% endif %}

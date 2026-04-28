@@ -15,14 +15,14 @@
         <form class="search-container" action="{{ url_for('all_items') }}" method="GET">
             <div class="search-field">
                 <label>Що шукаємо?</label>
-                <input type="text" name="query" placeholder="Введіть назву...">
+                <input type="text" name="title-search" value="{{ title_search if title_search else '' }}" placeholder="Введіть назву...">
             </div>
 
             <div class="divider"></div>
 
             <div class="search-field">
                 <label>Де загублено?</label>
-                <input type="text" name="city" placeholder="Введіть місто...">
+                <input type="text" name="city-search" value="{{ city_search if city_search else '' }}" placeholder="Введіть місто або вулицю...">
             </div>
 
             <div class="divider"></div>
