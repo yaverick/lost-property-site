@@ -65,8 +65,6 @@ def home():
 
 @app.route('/all-items', methods=['POST', 'GET'])
 def all_items():
-    items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
-
     title_search = request.args.get('title-search', '').strip()
     city_search = request.args.get('city-search', '').strip()
     sort_type = request.args.get('sort', 'newest')
