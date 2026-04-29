@@ -15,24 +15,34 @@
     <header class="navbar">
         <div class="container">
             <a href="{{ url_for('home') }}" class="logo">Бюро Знахідок</a>
-            <nav class="nav-links">
-                <a href="{{ url_for('home') }}">Головна</a>
-                <a href="{{ url_for('all_items') }}">Всі оголошення</a>
-                <a href="{{ url_for('about') }}">Про нас</a>
-                <a href="{{ url_for('rules') }}">Правила</a>
-            </nav>
-            {% if not current_user.is_authenticated %}
-            <div class="auth-buttons">
-                <a href="{{ url_for('login') }}" class="btn btn-login">Увійти</a>
-                <a href="{{ url_for('register') }}" class="btn btn-login">Зареєструватися</a>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-            {% else %}
-            <div class="auth-buttons">
-                <span class="user-name">Вітаємо, {{ current_user.name }}!</span>
-                <a href="{{ url_for('my_profile') }}" class="btn btn-login">Профіль</a>
-                <a href="{{ url_for('logout') }}" class="btn btn-login">Вийти</a>
+
+            <div class="nav-menu" id="nav-menu">
+                <nav class="nav-links">
+                    <a href="{{ url_for('home') }}">Головна</a>
+                    <a href="{{ url_for('all_items') }}">Всі оголошення</a>
+                    <a href="{{ url_for('about') }}">Про нас</a>
+                    <a href="{{ url_for('rules') }}">Правила</a>
+                </nav>
+                {% if not current_user.is_authenticated %}
+                <div class="auth-buttons">
+                    <a href="{{ url_for('login') }}" class="btn btn-login">Увійти</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-login">Зареєструватися</a>
+                </div>
+                {% else %}
+                <div class="auth-buttons">
+                    <span class="user-name">Вітаємо, {{ current_user.name }}!</span>
+                    <a href="{{ url_for('my_profile') }}" class="btn btn-login">Профіль</a>
+                    <a href="{{ url_for('logout') }}" class="btn btn-login">Вийти</a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
+
         </div>
     </header>
 
@@ -46,10 +56,12 @@
         <footer>
             <div class="container footer-content">
                 <p>&copy; 2026 Бюро Знахідок. Усі права захищено.</p>
-                <p>Зв'язок з адміністрацією: support@bureau.ua</p>
+                <p>Зв'язок з адміністрацією: example@example.ua</p>
             </div>
         </footer>
     </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 
