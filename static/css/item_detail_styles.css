@@ -50,3 +50,18 @@
     text-decoration: none;
     font-weight: 600;
 }
+
+.btn-delete {
+    background-color: #e74a3b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}

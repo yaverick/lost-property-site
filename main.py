@@ -63,7 +63,7 @@ def home():
     title_search = request.args.get('title-search', '').strip()
     return render_template('home.html', items=items)
 
-@app.route('/all_items', methods=['POST', 'GET'])
+@app.route('/all-items', methods=['POST', 'GET'])
 def all_items():
     items = LostItem.query.order_by(LostItem.date_posted.desc()).all()
 
@@ -152,7 +152,7 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/my_profile')
+@app.route('/my-profile')
 @login_required
 def my_profile():
     items = LostItem.query.filter_by(creator_id=current_user.id)
@@ -204,6 +204,20 @@ def report():
 def item_detail(item_id):
     item = LostItem.query.get_or_404(item_id)
     return render_template('item_detail.html', item=item)
+
+@app.route('/delete-item-<int:item_id>>', methods=['POST', 'GET'])
+@login_required
+def delete_item(item_id):
+    item = LostItem.query.get_or_404(item_id)
+    if current_user.id == item.creator_id:
+        try:
+            db.session.delete(item)
+            db.session.commit()
+        except:
+            db.session.rollback()
+
+    return redirect(url_for('all_items'))
+
 
 if __name__ == '__main__':
     with app.app_context():
