@@ -29,11 +29,19 @@
                     <p>{{ item.text }}</p>
                 </div>
 
-                <div class="info-group contact-box">
-                    <h3>Контакти для зв'язку</h3>
-                    <p><strong>Ім'я:</strong> {{ item.creator_name }}</p>
-                    <p><strong>Телефон:</strong> <a href="tel:{{ item.creator_phone_number }}">{{ item.creator_phone_number }}</a></p>
-                </div>
+                {% if current_user.is_authenticated %}
+                    <div class="info-group contact-box">
+                        <h3>Контакти для зв'язку</h3>
+                        <p><strong>Ім'я:</strong> {{ item.creator_name }}</p>
+                        <p><strong>Телефон:</strong> <a href="tel:{{ item.creator_phone_number }}">{{ item.creator_phone_number }}</a></p>
+                    </div>
+                {% else %}
+                    <div class="info-group contact-box">
+                        <h3>Контакти для зв'язку</h3>
+                        <p><strong>Ім'я:</strong> {{ item.creator_name }}</p>
+                        <p><strong>Телефон:</strong> для перегляду <a href="{{ url_for('login') }}">увійдіть в акаунт</a></p>
+                    </div>
+                {% endif %}
             </div>
 
             {% if current_user.id == item.creator_id %}
